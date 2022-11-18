@@ -1,6 +1,12 @@
 #include "myFunc.h"
+#include <cstddef>
 #include <stdlib.h>
 
+void swap(int &a, int &b) {
+    int t = a;
+    a = b;
+    b = t;
+}
 void deleteX(SeqList &L, int x) {
     // 从第一个元素开始遍历找到x
     int j = 0;
@@ -50,4 +56,89 @@ void deleteSameLink(LinkList &L) {
             p = p->next;
         }
     }
+}
+
+void reverseSeq(SeqList &L) {
+    for (int i = 0; i < L.length / 2; i++) {
+        swap(L.data[i], L.data[L.length - i - 1]);
+    } // 将第i个元素与第n-i-1的元素互换
+}
+
+void reverseLink(LinkList &L) {
+    LNode *p = L->next, *q = NULL, *r;
+    while (p) {
+        r = p->next; // 保存后继，防止断链
+        p->next = q; // 反转链表
+        q = p;       // 向后移动
+        p = r;
+    }
+    L->next = q;
+}
+
+void reLeftShift(SeqList &L, int n) {
+    n = n % L.length;
+    // 左移的实质是将前半和后半元素逆置，然后对整个线性表逆置
+    reverse(L.data, 0, n);
+    reverse(L.data, n, L.length);
+    reverse(L.data, 0, L.length);
+}
+
+void reverse(int A[], int m, int n) {
+    for (int i = m; i < (m + n) / 2; i++) {
+        swap(A[i], A[m - i - 1]);
+    }
+}
+
+void mergeSeq(SeqList L1, SeqList L2, SeqList &L3) {
+    int i = 0, j = 0, k = 0;
+    while (i < L1.length && j < L2.length) {
+        if (L1.data[i] > L2.data[j]) {
+            L3.data[k++] = L2.data[j++];
+        } else {
+            L3.data[k++] = L1.data[i++];
+        }
+    } // 比较两个链表的元素，比较小的一个插入L3的后面
+    while (i < L1.length) {
+        L3.data[k++] = L1.data[i++];
+    }
+    while (j < L2.length) {
+        L3.data[k++] = L2.data[j++];
+    }
+    // 将两个链表中剩余元素插入到L3末尾
+}
+
+void mergeLink(LinkList L1, LinkList L2, LinkList &L3) {
+    LNode *p = L1->next, *q = L2->next, *r = L3;
+    while (p && q) {
+        if (p->data < q->data) {
+            r->next = p;
+            p = p->next;
+        } else {
+            r->next = q;
+            q = q->next;
+        }
+        r = r->next;
+    }
+    if (p) {
+        r->next = p;
+    } else {
+        r->next = q;
+    }
+}
+
+void preOdd(SeqList &L) {
+    int low = 0, high = L.length - 1;
+    int tmp = L.data[low];
+    // 使用快排的思想，将偶数元素放到前面，奇数元素放到后面
+    while (low < high) {
+        while (low < high && L.data[high] % 2 == 1) {
+            high--;
+        }
+        L.data[low] = L.data[high];
+        while (low < high && L.data[low] % 2 == 0) {
+            low++;
+        }
+        L.data[high] = L.data[low];
+    }
+    L.data[low] = tmp;
 }
