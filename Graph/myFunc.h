@@ -35,4 +35,19 @@ void MGraph2ALGraph(MGraph MG, ALGraph &AG);
 //深度优先遍历
 void DFSTraverse(ALGraph G);
 void DFS(ALGraph G, int i, int visited[]);
-void visit(int i);
+void visit(VNode v);
+
+//广度优先遍历
+void BFSTraverse(ALGraph G);
+void BFS(ALGraph G, int i, int visited[]);
+
+//统计连通块的数量
+int GetConnectedByBFS(ALGraph G);
+
+//判断图是否为生成树
+int isTree(ALGraph G);
+void GetVexAndEdge(ALGraph G, int i, int &vexNum, int &edgeNum, int visited[]);
+
+//判断图中是否存在回路
+int hasLoop(ALGraph G);
+void DFSLoop(ALGraph G, int i, int visited[], int &flag);
