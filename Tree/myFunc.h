@@ -1,17 +1,20 @@
 typedef int ElemType;
 
-typedef struct BiNode {
+typedef struct BiNode
+{
     ElemType data;
     struct BiNode *lchild, *rchild;
 
-    BiNode(ElemType data, BiNode *lchild, BiNode *rchild) {
+    BiNode(ElemType data, BiNode *lchild, BiNode *rchild)
+    {
         this->data = data;
         this->lchild = lchild;
         this->rchild = rchild;
     }
 } BiNode, *BiTree;
 
-typedef struct BiTNode {
+typedef struct BiTNode
+{
     ElemType data;
     int ltag, rtag;
     struct BiTNode *lchild, *rchild;
@@ -59,5 +62,11 @@ int JudgeCBiTree(BiTree T);
 int JudgeMirror(BiTree T1, BiTree T2);
 
 //删除值为x的结点
-void deleteNode(BiTree &T);
-void deleteNodeX(BiTree &T, int x);
+void deleteNode(BiTree T);
+void deleteNodeX(BiTree T, int x);
+
+//判断是否为平衡二叉树
+int JudgeBalancedTree(BiTree T, int &d);
+
+//查找结点x的所有祖先结点
+void findFather(BiTree T, BiNode *p);
