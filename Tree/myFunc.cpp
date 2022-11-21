@@ -1,5 +1,6 @@
 #include "myFunc.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void visit(BiNode *T) {
     printf("%d ", T->data);
@@ -230,4 +231,74 @@ int countLevelK(BiTree T, int d, int k) {
         // 从第k-1层开始依次往上累加
     }
     return 0;
+}
+
+int GetLevel(BiTree T, BiNode *p, int d) {
+    if (T) {
+        if (p->data == T->data) {
+            return d;
+        }
+        return GetLevel(T->lchild, p, d + 1);
+        return GetLevel(T->rchild, p, d + 1);
+    }
+    return 0;
+}
+
+int JudgeCBiTree(BiTree T) {
+    if (T) {
+        //使用队列，如果队头元素为空且后续有空结点，则不是完全二叉树
+        BiNode *queue[105];
+        int front = 0, rear = 0;
+        queue[rear++] = T;
+        while (rear != front) {
+            BiNode *p = queue[front++];
+            if (p) {
+                // p不为空，则将其左右孩子入队
+                queue[rear++] = p->lchild;
+                queue[rear++] = p->rchild;
+            } else {
+                //检查是否存在不为空的结点
+                while (rear != front) {
+                    p = queue[front++];
+                    if (p)
+                        return 0;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
+int JudgeMirror(BiTree T1, BiTree T2) {
+    if (!T1 && !T2)
+        return 1;
+    if (T1 == NULL || T2 == NULL) {
+        return 0;
+    }
+    return T1->data == T2->data && JudgeMirror(T1->lchild, T2->rchild) &&
+           JudgeMirror(T1->rchild, T2->lchild);
+}
+
+void deleteNode(BiTree &T) {
+    if (T) {
+        deleteNode(T->lchild);
+        deleteNode(T->rchild);
+        free(T);
+    }
+}
+void deleteNodeX(BiTree &T, int x) {
+    if (T->data == x) {
+        deleteNode(T);
+        return;
+    }
+    BiNode *queue[105];
+    int front = 0, rear = 0;
+    queue[rear++] = T;
+    while (rear != front) {
+        BiNode *p = queue[front++];
+        if (p->lchild) {
+            if (p->lchild->data == x) {
+            }
+        }
+    }
 }

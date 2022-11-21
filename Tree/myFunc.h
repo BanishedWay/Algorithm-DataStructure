@@ -48,3 +48,16 @@ int maxData(int a, int b);
 
 // 求第k层结点数量
 int countLevelK(BiTree T, int d, int k);
+
+//求x所在层次
+int GetLevel(BiTree T, BiNode *p, int d);
+
+//判断是否为完全二叉树
+int JudgeCBiTree(BiTree T);
+
+//检查是否为镜像
+int JudgeMirror(BiTree T1, BiTree T2);
+
+//删除值为x的结点
+void deleteNode(BiTree &T);
+void deleteNodeX(BiTree &T, int x);
