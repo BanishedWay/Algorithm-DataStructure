@@ -19,3 +19,5 @@ void printArray(int A[], int n);
 void InsertSort(int A[], int n);
 //折半插入排序
 void InsertSortBinary(int A[], int n);
+//希尔排序
+void ShellSort(int A[], int n);

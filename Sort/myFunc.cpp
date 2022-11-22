@@ -58,3 +58,25 @@ void InsertSortBinary(int A[], int n)
         }
     }
 }
+
+void ShellSort(int A[], int n)
+{
+    //增量初值为n/2，每次除2
+    for (int dk = n / 2; dk >= 1; dk /= 2)
+    {
+        //增量为dk的插入排序
+        for (int i = dk + 1; i <= n; i++)
+        {
+            if (A[i] < A[i - dk])
+            {
+                A[0] = A[i];
+                int j;
+                for (j = i - dk; A[j] > A[0]; j -= dk)
+                {
+                    A[j + dk] = A[j];
+                }                 //同步后移
+                A[j + dk] = A[0]; //插入到合适的位置
+            }
+        }
+    }
+}
