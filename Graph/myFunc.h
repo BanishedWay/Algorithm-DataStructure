@@ -6,7 +6,7 @@ typedef struct
     char Vex[MAXN];
     int Edge[MAXN][MAXN];
     int vexNum, edgeNum;
-} MGraph; //临界矩阵
+} MGraph; //邻接矩阵
 
 typedef struct EdgeNode
 {
