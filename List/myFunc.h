@@ -1,11 +1,14 @@
 #define MAXN 105
+typedef int ElemType;
 
-typedef struct {
+typedef struct
+{
     int data[MAXN];
     int length;
 } SeqList;
 
-typedef struct Node {
+typedef struct Node
+{
     int data;
     struct Node *next;
 } LNode, *LinkList;
