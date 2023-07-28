@@ -157,8 +157,8 @@ void HeapAdjust(int A[], int i, int n)
         }
         if (A[0] >= A[k])
         {
-            // 如果根结点大于左右孩子，返回
-            return;
+            // 如果根结点大于左右孩子，退出循环
+            break; // 不能使用return，因为如果这是第二次循环，会导致A[0]的值被丢弃
         }
         else
         {
